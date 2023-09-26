@@ -2,11 +2,18 @@ class Solution {
 public:
     string intToRoman(int num) {
         
-        vector<string>ones = {"","I","II","III","IV","V","VI","VII","VIII","IX","X"};
-        vector<string>tens = {"", "X","XX","XXX","XL","L","LX","LXX","LXXX","XC"};
-        vector<string>hrns = {"", "C","CC","CCC","CD","D","DC","DCC","DCCC","CM"};
-        vector<string>ths = {"", "M", "MM", "MMM"};
-        string s = ths[num/1000] + hrns[(num%1000)/100] + tens[(num%100)/10] + ones[num%10];
-        return s;
+       vector <string> s = {"I", "IV", "V", "IX", "X", "XL", "L", "XC", "C", "CD", "D", "CM", "M"};
+        vector <int> value = {1, 4, 5, 9, 10, 40, 50, 90, 100, 400, 500, 900, 1000};
+        string ans = "";
+        int i = value.size() - 1; 
+        while (i >= 0 ) {
+            if (num < value[i]) {
+                i--;
+            } else {
+                ans += s[i];
+                num -= value[i];
+            }    
+        }
+        return ans;
     }
 };
